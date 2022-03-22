@@ -80,7 +80,7 @@ export function Dashboard() {
         />
       </HighlightCards>
       <Transactions>
-        <Title>Listagem</Title>
+        <Title>Lista</Title>
 
         <TransactionList 
         data={data} 
