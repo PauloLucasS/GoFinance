@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, 
   TouchableWithoutFeedback, 
   Keyboard,
@@ -40,7 +40,6 @@ const schema = Yup.object().shape({
 name: Yup
 .string()
 .required('Nome é obrigatório'),
-
 amount: Yup
 .number()
 .typeError('Informe um valor numérico')
@@ -53,8 +52,8 @@ export function Register() {
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
   const [category, setCategory] = useState({
-    key: "category",
-    name: "Categoria",
+    key: 'category',
+    name: 'Categoria',
   });
 
   const navigation = useNavigation();
@@ -102,8 +101,8 @@ export function Register() {
       reset();
       setTransactionType('');
       setCategory({
-        key: "category",
-        name: "Categoria",
+        key: 'category',
+        name: 'Categoria',
       });
 
       navigation.navigate('Listagem');
@@ -113,15 +112,6 @@ export function Register() {
       Alert.alert("Não foi possível salvar");
     }
   }
-
-  useEffect(() => {
-    async function loadData(){
-      const data = await AsyncStorage.getItem(dataKey);
-      console.log(JSON.parse(data!))
-    }
-    loadData();
-
-  },[])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
