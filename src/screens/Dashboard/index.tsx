@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { HighlightCard } from "../../HighlightCard";
 import { TransactionCard, TransactionCardProps } from "../../HighlightCard/TransactionCard";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect } from '@react-navigation/native'
 
 import {
   Container,
@@ -39,7 +41,7 @@ export function Dashboard() {
         style: 'currency',
         currency: 'BRL'
       });
-      console.log(transactionsFormatted)
+      
       const date = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
         month: '2-digit',
@@ -57,12 +59,17 @@ export function Dashboard() {
     });
 
     setData(transactionsFormatted);
-
+    console.log(transactionsFormatted)
   }
 
-  useEffect (() => {
+  useEffect(() => {
+   
     loadTransactions();
   },[]);
+  useFocusEffect(useCallback(() => {
+    loadTransactions();
+},[]));
+
   return (
     <Container>
       <Header>
